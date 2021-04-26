@@ -8,6 +8,6 @@ private:
 public:
     dmuchane();
     dmuchane(std::string a, unsigned prize, unsigned szt, unsigned przy);
-    void dodaj(std::string a, unsigned prize, unsigned szt, unsigned przy);
+    void dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
 };
 

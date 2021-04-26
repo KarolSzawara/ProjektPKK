@@ -2,7 +2,7 @@
 #include "Sprzedarz.h"
 
 namespace ProjektPKK {
-
+	//std::vector<std::shared_ptr<Instrument>> kontener;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -325,12 +325,16 @@ private: System::Void OknoDodaj_Load(System::Object^ sender, System::EventArgs^ 
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Close();
+	String^ b = text1->Text;
+	if (b->ToString() == "Dmuchane");
+	
+	//this->Close();
 }
 private: System::Void sprz_Click(System::Object^ sender, System::EventArgs^ e) {
 	Sprzedarz^ newFORM = gcnew Sprzedarz();
 	newFORM->Show();
 	this->Close();
+	
 }
 };
 }

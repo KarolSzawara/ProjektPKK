@@ -1,9 +1,14 @@
 #pragma once
 #include "Okno wyboru.h"
+#include "Instrument.h"
 #include "Sprzedarz.h"
+#include "dmuchane.h"
+#include "perkusyjne.h"
+#include "smyczkowe.h"
+#include "uderzane.h"
 
 namespace ProjektPKK {
-
+	std::vector<std::shared_ptr<Instrument>> kontener;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;

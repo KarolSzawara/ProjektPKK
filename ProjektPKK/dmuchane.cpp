@@ -9,8 +9,8 @@ dmuchane::dmuchane(std::string a, unsigned prize, unsigned szt, unsigned przy):I
 	l_przyciskow = przy;
 }
 
-void dmuchane::dodaj(std::string a, unsigned prize, unsigned szt, unsigned przy)
+void dmuchane::dodaj( std::vector<std::shared_ptr<Instrument>> kontener)
 {
-	dmuchane temp(a, prize, szt, przy);
-	kontener.push_back(&temp);
+	std::shared_ptr<dmuchane> b(this);
+	kontener.push_back(b);;
 }

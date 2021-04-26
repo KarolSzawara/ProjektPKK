@@ -9,6 +9,6 @@ private:
 public:
     perkusyjne();
     perkusyjne(std::string a, unsigned prize, unsigned szt, unsigned tal, unsigned beb);
-    void dodaj(std::string a, unsigned prize, unsigned szt, unsigned tal, unsigned beb);
+    void dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
 };
 

@@ -4,11 +4,31 @@ Instrument::Instrument(std::string a, unsigned prize, unsigned szt) {
 	cena = prize;
 	szt = l_szt;
 }
-void Instrument::dodaj(std::string a, unsigned prize, unsigned szt) 
+void Instrument::dodaj( std::vector<std::shared_ptr<Instrument>> kontener)
 {
-	Instrument b(a, prize, szt);
-	kontener.push_back(&b);
+	std::shared_ptr<Instrument> b(this);
+	kontener.push_back(b);
 }
-void Instrument::sprzedaj(int numer) {
-	kontener.erase(kontener.begin(), kontener.begin()+numer);
+
+
+std::string Instrument::getNAZWA()
+{
+	return nazwa;
+}
+
+unsigned Instrument::getCENA()
+{
+	return cena;
+}
+
+unsigned Instrument::getLSZT()
+{
+	return l_szt;
+}
+
+void Instrument::sprzedaj(std::string nazwa, std::vector<std::shared_ptr<Instrument>> kontener) {
+	
+	kontener.erase(std::remove_if(kontener.begin(), kontener.end(), [nazwa](std::shared_ptr<Instrument> Sptr) {return Sptr->getNAZWA() == nazwa; })
+	);
+		
 }

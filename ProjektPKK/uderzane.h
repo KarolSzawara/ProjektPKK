@@ -8,7 +8,7 @@ private:
 protected:
     uderzane();
     uderzane(std::string nazwa, double prize, unsigned szt, unsigned l_str, unsigned klaw);
-    void dodaj(std::string nazwa, double prize, unsigned szt, unsigned l_str, unsigned klaw);
+    void dodaj(std::vector<std::shared_ptr<Instrument>> kontener);
 
 };
 

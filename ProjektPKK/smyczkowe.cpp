@@ -9,10 +9,10 @@ strunowe::strunowe(std::string nazwa,double prize,  unsigned szt,unsigned l_str 
 	l_strun = l_str;
 }
 
-void strunowe::dodaj(std::string nazwa, double prize, unsigned szt, unsigned l_str)
+void strunowe::dodaj( std::vector<std::shared_ptr<Instrument>> kontener)
 {
-	strunowe a(nazwa,prize,szt,l_str);
-	kontener.push_back(&a);
+	std::shared_ptr<strunowe> b(this);
+	kontener.push_back(b);
 }
 
 smyczkowe::smyczkowe()
@@ -24,9 +24,9 @@ smyczkowe::smyczkowe(std::string nazwa, double prize, unsigned szt, unsigned l_s
 	dl_gryfu = gryf;
 }
 
-void smyczkowe::dodaj(std::string nazwa, double prize, unsigned szt, unsigned l_str, float gryf)
+void smyczkowe::dodaj( std::vector<std::shared_ptr<Instrument>> kontener)
 {
-	smyczkowe a(nazwa, prize, szt, l_str, gryf);
-	kontener.push_back(&a);
+	std::shared_ptr<smyczkowe> b(this);
+	kontener.push_back(b);
 
 }

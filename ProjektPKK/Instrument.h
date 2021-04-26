@@ -1,7 +1,7 @@
 #include <iostream>
-#include <deque>
+#include <vector>
 using namespace System;
-
+#pragma once
 class Instrument {
 protected:
 	unsigned cena;
@@ -9,10 +9,12 @@ protected:
 	unsigned l_szt;
 	
 public:
-	std::deque<Instrument*> kontener;
 	Instrument() {}
 	
 	Instrument(std::string a, unsigned prize, unsigned szt);
-	void virtual dodaj(std::string a, unsigned prize, unsigned szt);
-	void sprzedaj(int numer);
+	void virtual dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
+	void sprzedaj(std::string nazwa, std::vector<std::shared_ptr<Instrument>> kontener);
+	std::string getNAZWA();
+	unsigned getCENA();
+	unsigned getLSZT();
 };

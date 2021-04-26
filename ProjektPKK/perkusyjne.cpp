@@ -10,8 +10,8 @@ perkusyjne::perkusyjne(std::string a, unsigned prize, unsigned szt, unsigned tal
 	l_bebnow = beb;
 }
 
-void perkusyjne::dodaj(std::string a, unsigned prize, unsigned szt, unsigned tal, unsigned beb)
+void perkusyjne::dodaj( std::vector<std::shared_ptr<Instrument>> kontener)
 {
-	perkusyjne b(a, prize, szt, tal, beb);
-	kontener.push_back(&b);
+	std::shared_ptr<perkusyjne> b(this);
+	kontener.push_back(b);;
 }
