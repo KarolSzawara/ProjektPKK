@@ -66,7 +66,7 @@ namespace ProjektPKK {
 			// 
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
-				L"Dmuchany", L"Perkusyny", L"Smyczkowy", L"Strunowy",
+				L"Dmuchany", L"Perkusyjny", L"Smyczkowy", L"Strunowy",
 					L"Uderzany"
 			});
 			this->comboBox1->Location = System::Drawing::Point(71, 66);

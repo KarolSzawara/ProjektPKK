@@ -8,6 +8,7 @@ namespace ProjektPKK {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Podsumowanie informacji o Sprzedarz
@@ -18,9 +19,14 @@ namespace ProjektPKK {
 		Sprzedarz(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: W tym miejscu dodaj kod konstruktora
-			//
+			String^ filename = "data.txt";
+			StreamReader^ din = File::OpenText(filename);
+			String^ str;
+			
+			while ((str = din->ReadLine()) != nullptr) {
+				listBox1->Items->Add(str);
+			}
+
 		}
 
 	protected:
@@ -34,9 +40,12 @@ namespace ProjektPKK {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
+
 	protected:
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
+
 
 	protected:
 
@@ -53,16 +62,11 @@ namespace ProjektPKK {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// flowLayoutPanel1
-			// 
-			this->flowLayoutPanel1->Location = System::Drawing::Point(12, 12);
-			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(570, 342);
-			this->flowLayoutPanel1->TabIndex = 0;
 			// 
 			// button1
 			// 
@@ -72,6 +76,25 @@ namespace ProjektPKK {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Sprzedaj";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Sprzedarz::button1_Click);
+			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(3, 3);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(567, 342);
+			this->listBox1->TabIndex = 0;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Sprzedarz::listBox1_SelectedIndexChanged);
+			// 
+			// flowLayoutPanel1
+			// 
+			this->flowLayoutPanel1->Controls->Add(this->listBox1);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(12, 12);
+			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
+			this->flowLayoutPanel1->Size = System::Drawing::Size(570, 342);
+			this->flowLayoutPanel1->TabIndex = 0;
+			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Sprzedarz::flowLayoutPanel1_Paint);
 			// 
 			// Sprzedarz
 			// 
@@ -82,9 +105,17 @@ namespace ProjektPKK {
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Name = L"Sprzedarz";
 			this->Text = L"Sprzedarz";
+			this->flowLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	};
+	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+	}
+};
 }

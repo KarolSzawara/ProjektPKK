@@ -1,0 +1,6 @@
+class perkusyjne; nazwa k; cena2;liczba sztuk 3;
+class smyczkowe; nazwa:a;cena:2;liczba_sztuk:3;
+class uderzane; nazwa:a;cena:2;liczba_sztuk:3;
+class perkusyjne; nazwa:a;cena:2;liczba_sztuk:3;liczba_talerzy:4;liczba_bebnow:5;
+class uderzane; nazwa:a;cena:2;liczba_sztuk:3;liczba_strun:4;liczba_klawiszy:5;
+class strunowe; nazwa:a;cena:2;liczba_sztuk:3;liczba_strun:3;

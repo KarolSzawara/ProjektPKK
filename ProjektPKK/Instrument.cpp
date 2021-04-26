@@ -1,13 +1,16 @@
 #include "Instrument.h"
+
 Instrument::Instrument(std::string a, unsigned prize, unsigned szt) {
 	nazwa = a;
 	cena = prize;
-	szt = l_szt;
+	l_szt = szt;
 }
-void Instrument::dodaj( std::vector<std::shared_ptr<Instrument>> kontener)
+std::vector<std::shared_ptr<Instrument>> Instrument::dodaj( const std::vector<std::shared_ptr<Instrument>> kontener)
 {
+	std::vector<std::shared_ptr<Instrument>> nVECTOR = kontener;
 	std::shared_ptr<Instrument> b(this);
-	kontener.push_back(b);
+	nVECTOR.push_back(b);
+	return nVECTOR;
 }
 
 
@@ -24,6 +27,22 @@ unsigned Instrument::getCENA()
 unsigned Instrument::getLSZT()
 {
 	return l_szt;
+}
+
+void  Instrument::saveTXT()
+{
+		
+	StreamWriter^ w = gcnew StreamWriter("data.txt",true);
+	std::string typ=typeid (*this).name();
+	String^ name=gcnew String(typ.c_str());
+	w->Flush();
+	w->Write("{0}; ", name);
+	name= gcnew String(nazwa.c_str());
+	w->Write("nazwa:{0};",name); 
+	w->Write("cena:{0};",cena);
+	w->Write("liczba_sztuk:{0};\n",l_szt);
+	w->Flush();
+	w->Close();
 }
 
 void Instrument::sprzedaj(std::string nazwa, std::vector<std::shared_ptr<Instrument>> kontener) {

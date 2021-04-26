@@ -6,10 +6,11 @@ class strunowe :
 protected:
     unsigned l_strun;
 public:
+    ~strunowe() {}
     strunowe();
-    strunowe(std::string nazwa, double prize, unsigned szt, unsigned l_str);
-    void virtual dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
-    
+    strunowe(std::string nazwa, unsigned prize, unsigned szt, unsigned l_str);
+    std::vector<std::shared_ptr<Instrument>> virtual dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
+    void virtual saveTXT();
 };
 
 class smyczkowe :
@@ -18,8 +19,10 @@ class smyczkowe :
 private:
     float dl_gryfu;
 public:
+    ~smyczkowe() {}
     smyczkowe();
-    smyczkowe(std::string nazwa, double prize, unsigned szt, unsigned l_str, float gryf);
-    void dodaj(std::vector<std::shared_ptr<Instrument>> kontener);
+    smyczkowe(std::string nazwa, unsigned prize, unsigned szt, unsigned l_str, float gryf);
+    std::vector<std::shared_ptr<Instrument>> dodaj(std::vector<std::shared_ptr<Instrument>> kontener);
+    void saveTXT();
 };
 

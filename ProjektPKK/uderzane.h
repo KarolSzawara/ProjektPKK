@@ -5,10 +5,12 @@ class uderzane :
 {
 private:
     unsigned l_kl;
-protected:
+    
+public:
     uderzane();
-    uderzane(std::string nazwa, double prize, unsigned szt, unsigned l_str, unsigned klaw);
-    void dodaj(std::vector<std::shared_ptr<Instrument>> kontener);
-
+    ~uderzane() {}
+    uderzane(std::string nazwa, unsigned prize, unsigned szt, unsigned l_str, unsigned klaw);
+    std::vector<std::shared_ptr<Instrument>> dodaj(std::vector<std::shared_ptr<Instrument>> kontener);
+    void saveTXT();
 };
 

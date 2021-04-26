@@ -6,8 +6,10 @@ class dmuchane :
 private:
     unsigned l_przyciskow;
 public:
+    ~dmuchane() {}
     dmuchane();
     dmuchane(std::string a, unsigned prize, unsigned szt, unsigned przy);
-    void dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
+    std::vector<std::shared_ptr<Instrument>> dodaj( std::vector<std::shared_ptr<Instrument>> kontener);
+    void saveTXT();
 };
 

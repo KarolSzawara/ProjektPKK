@@ -1,7 +1,21 @@
 #pragma once
 #include "Sprzedarz.h"
-
+#include "Instrument.h"
+#include "Sprzedarz.h"
+#include "dmuchane.h"
+#include "perkusyjne.h"
+#include "smyczkowe.h"
+#include "uderzane.h"
 namespace ProjektPKK {
+	static std::string toStandardString(System::String^ string)
+	{
+		using System::Runtime::InteropServices::Marshal;
+		System::IntPtr pointer = Marshal::StringToHGlobalAnsi(string);
+		char* charPointer = reinterpret_cast<char*>(pointer.ToPointer());
+		std::string returnString(charPointer, string->Length);
+		Marshal::FreeHGlobal(pointer);
+		return returnString;
+	}
 	//std::vector<std::shared_ptr<Instrument>> kontener;
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -32,14 +46,18 @@ namespace ProjektPKK {
 			case 1:text1->Text = "Perkusyjny";
 				Par1->Text = "Liczba Talerzy";
 				Par2->Text = "Liczna Bebnow";
+				break;
 			case 2:text1->Text = "Smyczkowy";
 				Par1->Text = "Liczba Strun";
 				Par2->Text = "Dlugosc gryfu";
+				break;
 			case 3:text1->Text = "Strunowy";
 				Par1->Text = "Liczba Strun";
+				break;
 			case 4:text1->Text = "Uderzany";
 				Par1->Text = "Liczba Strun";
 				Par2->Text = "Liczba Klawiszy";
+				break;
 			}
 
 			//
@@ -326,9 +344,38 @@ private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ b = text1->Text;
-	if (b->ToString() == "Dmuchane");
+	std::vector<std::shared_ptr<Instrument>> kontener;
 	
-	//this->Close();
+	if (b == "Dmuchany") {
+		dmuchane ins(toStandardString(text2->Text),unsigned::Parse(text3->Text), 
+			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text));
+		kontener=ins.dodaj(kontener);
+		
+	}
+	else if (b == "Perkusyjny") {
+		perkusyjne ins(toStandardString(text2->Text), unsigned::Parse(text3->Text), 
+			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text),unsigned::Parse(text6->Text));
+		kontener = ins.dodaj(kontener);
+	}
+	else if(b=="Smyczkowy"){
+		smyczkowe ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text), float::Parse(text6->Text));
+		kontener = ins.dodaj(kontener);
+	}
+	else if (b == "Strunowy") {
+		strunowe ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text));
+		kontener = ins.dodaj(kontener);
+	}
+	else if (b == "Uderzany") {
+		uderzane ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text),unsigned::Parse(text6->Text));
+		kontener = ins.dodaj(kontener);
+	}
+	kontener[0]->saveTXT();
+	
+	
+	this->Close();
 }
 private: System::Void sprz_Click(System::Object^ sender, System::EventArgs^ e) {
 	Sprzedarz^ newFORM = gcnew Sprzedarz();

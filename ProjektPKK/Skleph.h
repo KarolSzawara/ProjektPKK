@@ -7,15 +7,17 @@
 #include "smyczkowe.h"
 #include "uderzane.h"
 
+
+
 namespace ProjektPKK {
-	std::vector<std::shared_ptr<Instrument>> kontener;
+	//std::vector<std::shared_ptr<Instrument>> kontener;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	
 	/// <summary>
 	/// Podsumowanie informacji o Skleph
 	/// </summary>
