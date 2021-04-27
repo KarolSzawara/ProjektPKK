@@ -24,6 +24,7 @@ void perkusyjne::saveTXT()
 {
 	StreamWriter^ w = gcnew StreamWriter("data.txt", true);
 	std::string typ = typeid (*this).name();
+	typ.erase(typ.begin(), typ.begin() + 6);
 	String^ name = gcnew String(typ.c_str());
 	w->Flush();
 	w->Write("{0}; ", name);

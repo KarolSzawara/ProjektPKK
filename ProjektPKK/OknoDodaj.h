@@ -59,6 +59,21 @@ namespace ProjektPKK {
 				Par2->Text = "Liczba Klawiszy";
 				break;
 			}
+			text1->ReadOnly=true;
+
+			String^ filename = "data.txt";
+			StreamReader^ din = File::OpenText(filename);
+			String^ str;
+			array<System::String^>^ anyPRT = gcnew array<System::String^>(5);
+			while ((str = din->ReadLine()) != nullptr) {
+				anyPRT = str->Split(';');
+				anyPRT[1] = anyPRT[1]->Remove(0, 7);
+				
+				comboBox1->Items->Add(anyPRT[1]);
+
+				
+			}
+			din->Close();
 
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
@@ -257,6 +272,7 @@ namespace ProjektPKK {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(239, 21);
 			this->comboBox1->TabIndex = 13;
+			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &OknoDodaj::comboBox1_SelectedIndexChanged);
 			// 
 			// label7
 			// 
@@ -382,6 +398,8 @@ private: System::Void sprz_Click(System::Object^ sender, System::EventArgs^ e) {
 	newFORM->Show();
 	this->Close();
 	
+}
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

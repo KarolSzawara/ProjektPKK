@@ -26,6 +26,7 @@ namespace ProjektPKK {
 			while ((str = din->ReadLine()) != nullptr) {
 				listBox1->Items->Add(str);
 			}
+			din->Close();
 
 		}
 
@@ -35,6 +36,23 @@ namespace ProjektPKK {
 		/// </summary>
 		~Sprzedarz()
 		{
+			String^ str;
+			StreamWriter^ w = gcnew StreamWriter("data.txt", false);
+			
+			for (int i = 0; i < listBox1->Items->Count; i++) {
+				listBox1->SetSelected(i, true);
+				
+				w->Flush();
+				if (listBox1->SelectedItem->ToString() != "") {
+					w->Write("{0}", listBox1->SelectedItem->ToString());
+					w->Write("\n");
+				}
+			}
+
+			
+			
+			
+			w->Close();
 			if (components)
 			{
 				delete components;
@@ -115,6 +133,7 @@ namespace ProjektPKK {
 	private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		listBox1->Items->RemoveAt(listBox1->SelectedIndex);
 		
 	}
 };
