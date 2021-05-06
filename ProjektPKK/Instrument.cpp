@@ -39,7 +39,7 @@ void  Instrument::saveTXT()
 	
 	
 	w->Flush();
-	w->Write("{0}; ", name);
+	w->Write("{0};", name);
 	name= gcnew String(nazwa.c_str());
 	w->Write("nazwa:{0};",name); 
 	w->Write("cena:{0};",cena);
@@ -48,9 +48,9 @@ void  Instrument::saveTXT()
 	w->Close();
 }
 
-void Instrument::sprzedaj(std::string nazwa, std::vector<std::shared_ptr<Instrument>> kontener) {
+std::vector<std::shared_ptr<Instrument>> Instrument::sprzedaj(std::string nazwa, std::vector<std::shared_ptr<Instrument>> kontener) {
 	
 	kontener.erase(std::remove_if(kontener.begin(), kontener.end(), [nazwa](std::shared_ptr<Instrument> Sptr) {return Sptr->getNAZWA() == nazwa; })
 	);
-		
+	return kontener;
 }

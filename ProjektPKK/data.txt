@@ -1,4 +1,1 @@
-perkusyjne; nazwa:a;cena:2;liczba_sztuk:3;liczba_talerzy:4;liczba_bebnow:5;
-perkusyjne; nazwa:a;cena:2;liczba_sztuk:3;liczba_talerzy:4;liczba_bebnow:5;
-dmuchane; nazwa:ladny;cena:1;liczba_sztuk:2;l_przyciskow:3;
-perkusyjne; nazwa:brzydkio;cena:1;liczba_sztuk:2;liczba_talerzy:3;liczba_bebnow:4;
+dmuchane;nazwa:aaaa;cena:2;liczba_sztuk:3;l_przyciskow:4;

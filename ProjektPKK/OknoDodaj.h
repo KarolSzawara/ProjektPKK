@@ -67,7 +67,7 @@ namespace ProjektPKK {
 			array<System::String^>^ anyPRT = gcnew array<System::String^>(5);
 			while ((str = din->ReadLine()) != nullptr) {
 				anyPRT = str->Split(';');
-				anyPRT[1] = anyPRT[1]->Remove(0, 7);
+				anyPRT[1] = anyPRT[1]->Remove(0, 6);
 				
 				comboBox1->Items->Add(anyPRT[1]);
 
@@ -123,6 +123,7 @@ namespace ProjektPKK {
 	private: System::Windows::Forms::Label^ Instr;
 	private: System::Windows::Forms::Label^ Par1;
 	private: System::Windows::Forms::Button^ sprz;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -159,6 +160,7 @@ namespace ProjektPKK {
 			this->Instr = (gcnew System::Windows::Forms::Label());
 			this->Par1 = (gcnew System::Windows::Forms::Label());
 			this->sprz = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// text2
@@ -278,11 +280,12 @@ namespace ProjektPKK {
 			// 
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->label7->Location = System::Drawing::Point(72, 19);
+			this->label7->Location = System::Drawing::Point(87, 24);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(129, 20);
+			this->label7->Size = System::Drawing::Size(79, 20);
 			this->label7->TabIndex = 14;
-			this->label7->Text = L"Zmien Istniejacy";
+			this->label7->Text = L"Istniej¹cy";
+			this->label7->Click += gcnew System::EventHandler(this, &OknoDodaj::label7_Click);
 			// 
 			// text1
 			// 
@@ -313,19 +316,30 @@ namespace ProjektPKK {
 			// 
 			// sprz
 			// 
-			this->sprz->Location = System::Drawing::Point(58, 214);
+			this->sprz->Location = System::Drawing::Point(281, 214);
 			this->sprz->Name = L"sprz";
-			this->sprz->Size = System::Drawing::Size(160, 30);
+			this->sprz->Size = System::Drawing::Size(148, 30);
 			this->sprz->TabIndex = 18;
 			this->sprz->Text = L"Przejdz do sprzedarzy";
 			this->sprz->UseVisualStyleBackColor = true;
 			this->sprz->Click += gcnew System::EventHandler(this, &OknoDodaj::sprz_Click);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(65, 214);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(128, 30);
+			this->button2->TabIndex = 19;
+			this->button2->Text = L"Wybierz";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &OknoDodaj::button2_Click);
 			// 
 			// OknoDodaj
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(697, 256);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->sprz);
 			this->Controls->Add(this->Par1);
 			this->Controls->Add(this->Instr);
@@ -400,6 +414,106 @@ private: System::Void sprz_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ filename = "data.txt";
+	StreamReader^ din = File::OpenText(filename);
+	String^ str;
+	array<System::String^>^ anyPRT;
+	std::vector<std::shared_ptr<Instrument>> kontener;
+	while ((str = din->ReadLine()) != nullptr)
+	{
+		anyPRT=str->Split(';');
+		anyPRT[1]=anyPRT[1]->Remove(0,6);
+		anyPRT[2]=anyPRT[2]->Remove(0,5);
+		anyPRT[3] = anyPRT[3]->Remove(0, 13);
+		
+		
+		if (anyPRT[0] == "dmuchane") {
+			anyPRT[4] = anyPRT[4]->Remove(0, 13);
+			dmuchane obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+				unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]));
+			kontener = obj.dodaj(kontener);
+
+		}else
+			if (anyPRT[0] == "perkusyjne") {
+				anyPRT[4] = anyPRT[4]->Remove(0, 15);
+				anyPRT[5] = anyPRT[5]->Remove(0, 14);
+				perkusyjne obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
+				kontener = obj.dodaj(kontener);
+			}
+			else if (anyPRT[0] == "smyczkowe") {
+				anyPRT[4] = anyPRT[4]->Remove(0, 13);
+				anyPRT[5] = anyPRT[5]->Remove(0, 14);
+				smyczkowe obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
+				kontener = obj.dodaj(kontener);
+			}
+			else if (anyPRT[0] == "strunowe") {
+				anyPRT[4] = anyPRT[4]->Remove(0, 13);
+				strunowe obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]));
+				kontener = obj.dodaj(kontener);
+			}
+			else if (anyPRT[0] == "uderzane") {
+				anyPRT[4] = anyPRT[4]->Remove(0, 13);
+				anyPRT[5] = anyPRT[5]->Remove(0, 16);
+				uderzane obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
+				kontener=obj.dodaj(kontener);
+			}
+if (comboBox1->SelectedItem->ToString() == anyPRT[1]) {
+				
+				text2->Text = anyPRT[1];
+				text3->Text = anyPRT[2];
+				text4->Text = anyPRT[3];
+			if (anyPRT[0] == "dmuchane") {
+				text1->Text = "Dmuchany";
+				Par1->Text = "Liczba Przyciskow";
+				text5->Text = anyPRT[4];
+				Par2->Text = "";
+
+			}
+			else if (anyPRT[0] == "perkusyjne") {
+				text1->Text = "Perkusyjny";
+				text5->Text = anyPRT[4];
+				text6->Text = anyPRT[5];
+				Par1->Text = "Liczba Talerzy";
+				Par2->Text = "Liczna Bebnow";
+			}
+			else if (anyPRT[0] == "smyczkowe") {
+				text1->Text = "Smyczkowy";
+				text5->Text = anyPRT[4];
+				text6->Text = anyPRT[5];
+				Par1->Text = "Liczba Strun";
+				Par2->Text = "Dlugosc gryfu";
+			}
+			else if (anyPRT[0] == "strunowe") {
+				text1->Text = "Strunowy";
+				text5->Text = anyPRT[4];
+				Par1->Text = "Liczba Strun";
+				Par2->Text = "";
+			}
+			else if (anyPRT[0] == "Uderzany") {
+				text1->Text = "Uderzane";
+				text5->Text = anyPRT[4];
+				text6->Text = anyPRT[5];
+				Par1->Text = "Liczba Strun";
+				Par2->Text = "Liczba Klawiszy";
+			}
+		}
+	}
+	din->Close();
+	kontener=kontener[0]->sprzedaj(toStandardString(comboBox1->SelectedItem->ToString()),kontener);
+	StreamWriter^ clean = gcnew StreamWriter(filename, false);
+	clean->Close();
+	for (int i = 0; i < kontener.size(); i++) {
+		if(kontener[i]!=NULL)
+		kontener[i]->saveTXT();
+	}
 }
 };
 }

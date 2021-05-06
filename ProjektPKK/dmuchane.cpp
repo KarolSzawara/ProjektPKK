@@ -26,7 +26,7 @@ void dmuchane::saveTXT()
 	typ.erase(typ.begin(), typ.begin() + 6);
 	String^ name = gcnew String(typ.c_str());
 	w->Flush();
-	w->Write("{0}; ", name);
+	w->Write("{0};", name);
 	name = gcnew String(nazwa.c_str());
 	w->Write("nazwa:{0};", name);
 	w->Write("cena:{0};", cena);
