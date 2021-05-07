@@ -1,1 +1,4 @@
-dmuchane;nazwa:aaaa;cena:2;liczba_sztuk:3;l_przyciskow:4;
+dmuchane;nazwa:ss;cena:2;liczba_sztuk:3;l_przyciskow:4;
+uderzane;nazwa:s;cena:2;liczba_sztuk:3;liczba_strun:4;liczba_klawiszy:5;
+smyczkowe;nazwa:as;cena:2;liczba_sztuk:3;liczba_strun:4;dlugosc_gryfu:5;
+strunowe;nazwa:fd;cena:2;liczba_sztuk:3;liczba_strun:4;

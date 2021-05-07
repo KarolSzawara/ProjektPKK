@@ -115,10 +115,15 @@ namespace ProjektPKK {
 	private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System :: Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		OknoDodaj^ dodFORM = gcnew OknoDodaj(comboBox1->ToString(),comboBox1->SelectedIndex);
-		
-		dodFORM->Show();
-		this->Close();
+		if (comboBox1->SelectedItem == nullptr) {
+			MessageBox::Show("Nie Wybra³eœ", "OK");
+		}
+		else {
+			OknoDodaj^ dodFORM = gcnew OknoDodaj(comboBox1->ToString(), comboBox1->SelectedIndex);
+
+			dodFORM->Show();
+			this->Close();
+		}
 	}
 	private: System::Void Oknowyboru_Load(System::Object^ sender, System::EventArgs^ e) {
 	}

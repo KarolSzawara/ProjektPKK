@@ -23,6 +23,7 @@ namespace ProjektPKK {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	
 
 	/// <summary>
 	/// Podsumowanie informacji o OknoDodaj
@@ -209,7 +210,7 @@ namespace ProjektPKK {
 			// 
 			this->Nazwa->AutoSize = true;
 			this->Nazwa->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->Nazwa->Location = System::Drawing::Point(292, 54);
+			this->Nazwa->Location = System::Drawing::Point(277, 54);
 			this->Nazwa->Name = L"Nazwa";
 			this->Nazwa->Size = System::Drawing::Size(60, 20);
 			this->Nazwa->TabIndex = 6;
@@ -220,7 +221,7 @@ namespace ProjektPKK {
 			// 
 			this->Cena->AutoSize = true;
 			this->Cena->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->Cena->Location = System::Drawing::Point(292, 78);
+			this->Cena->Location = System::Drawing::Point(277, 78);
 			this->Cena->Name = L"Cena";
 			this->Cena->Size = System::Drawing::Size(48, 20);
 			this->Cena->TabIndex = 7;
@@ -230,7 +231,7 @@ namespace ProjektPKK {
 			// 
 			this->L_SZT->AutoSize = true;
 			this->L_SZT->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->L_SZT->Location = System::Drawing::Point(292, 104);
+			this->L_SZT->Location = System::Drawing::Point(277, 104);
 			this->L_SZT->Name = L"L_SZT";
 			this->L_SZT->Size = System::Drawing::Size(106, 20);
 			this->L_SZT->TabIndex = 8;
@@ -241,7 +242,7 @@ namespace ProjektPKK {
 			// 
 			this->Par2->AutoSize = true;
 			this->Par2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->Par2->Location = System::Drawing::Point(292, 156);
+			this->Par2->Location = System::Drawing::Point(277, 156);
 			this->Par2->Name = L"Par2";
 			this->Par2->Size = System::Drawing::Size(14, 20);
 			this->Par2->TabIndex = 10;
@@ -251,7 +252,7 @@ namespace ProjektPKK {
 			// 
 			this->Par3->AutoSize = true;
 			this->Par3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->Par3->Location = System::Drawing::Point(292, 180);
+			this->Par3->Location = System::Drawing::Point(277, 180);
 			this->Par3->Name = L"Par3";
 			this->Par3->Size = System::Drawing::Size(14, 20);
 			this->Par3->TabIndex = 11;
@@ -298,7 +299,7 @@ namespace ProjektPKK {
 			// 
 			this->Instr->AutoSize = true;
 			this->Instr->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->Instr->Location = System::Drawing::Point(292, 27);
+			this->Instr->Location = System::Drawing::Point(277, 27);
 			this->Instr->Name = L"Instr";
 			this->Instr->Size = System::Drawing::Size(88, 20);
 			this->Instr->TabIndex = 16;
@@ -308,7 +309,7 @@ namespace ProjektPKK {
 			// 
 			this->Par1->AutoSize = true;
 			this->Par1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
-			this->Par1->Location = System::Drawing::Point(292, 130);
+			this->Par1->Location = System::Drawing::Point(277, 130);
 			this->Par1->Name = L"Par1";
 			this->Par1->Size = System::Drawing::Size(14, 20);
 			this->Par1->TabIndex = 17;
@@ -375,35 +376,38 @@ private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ b = text1->Text;
 	std::vector<std::shared_ptr<Instrument>> kontener;
-	
-	if (b == "Dmuchany") {
-		dmuchane ins(toStandardString(text2->Text),unsigned::Parse(text3->Text), 
-			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text));
-		kontener=ins.dodaj(kontener);
-		
+	try {
+		if (b == "Dmuchany") {
+			dmuchane ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+				unsigned::Parse(text4->Text), unsigned::Parse(text5->Text));
+			kontener = ins.dodaj(kontener);
+
+		}
+		else if (b == "Perkusyjny") {
+			perkusyjne ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+				unsigned::Parse(text4->Text), unsigned::Parse(text5->Text), unsigned::Parse(text6->Text));
+			kontener = ins.dodaj(kontener);
+		}
+		else if (b == "Smyczkowy") {
+			smyczkowe ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+				unsigned::Parse(text4->Text), unsigned::Parse(text5->Text), float::Parse(text6->Text));
+			kontener = ins.dodaj(kontener);
+		}
+		else if (b == "Strunowy") {
+			strunowe ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+				unsigned::Parse(text4->Text), unsigned::Parse(text5->Text));
+			kontener = ins.dodaj(kontener);
+		}
+		else if (b == "Uderzany") {
+			uderzane ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
+				unsigned::Parse(text4->Text), unsigned::Parse(text5->Text), unsigned::Parse(text6->Text));
+			kontener = ins.dodaj(kontener);
+		}
+		kontener[0]->saveTXT();
 	}
-	else if (b == "Perkusyjny") {
-		perkusyjne ins(toStandardString(text2->Text), unsigned::Parse(text3->Text), 
-			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text),unsigned::Parse(text6->Text));
-		kontener = ins.dodaj(kontener);
+	catch (Exception^ ex) {
+		MessageBox::Show("Wprowadzone b³edne dane lub ich brak","B³ad");
 	}
-	else if(b=="Smyczkowy"){
-		smyczkowe ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
-			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text), float::Parse(text6->Text));
-		kontener = ins.dodaj(kontener);
-	}
-	else if (b == "Strunowy") {
-		strunowe ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
-			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text));
-		kontener = ins.dodaj(kontener);
-	}
-	else if (b == "Uderzany") {
-		uderzane ins(toStandardString(text2->Text), unsigned::Parse(text3->Text),
-			unsigned::Parse(text4->Text), unsigned::Parse(text5->Text),unsigned::Parse(text6->Text));
-		kontener = ins.dodaj(kontener);
-	}
-	kontener[0]->saveTXT();
-	
 	
 	this->Close();
 }
@@ -423,89 +427,102 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	String^ str;
 	array<System::String^>^ anyPRT;
 	std::vector<std::shared_ptr<Instrument>> kontener;
-	while ((str = din->ReadLine()) != nullptr)
-	{
-		anyPRT=str->Split(';');
-		anyPRT[1]=anyPRT[1]->Remove(0,6);
-		anyPRT[2]=anyPRT[2]->Remove(0,5);
-		anyPRT[3] = anyPRT[3]->Remove(0, 13);
-		
-		
-		if (anyPRT[0] == "dmuchane") {
-			anyPRT[4] = anyPRT[4]->Remove(0, 13);
-			dmuchane obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
-				unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]));
-			kontener = obj.dodaj(kontener);
+	
+		while ((str = din->ReadLine()) != nullptr)
+		{
+			anyPRT = str->Split(';');
+			anyPRT[1] = anyPRT[1]->Remove(0, 6);
+			anyPRT[2] = anyPRT[2]->Remove(0, 5);
+			anyPRT[3] = anyPRT[3]->Remove(0, 13);
 
-		}else
-			if (anyPRT[0] == "perkusyjne") {
-				anyPRT[4] = anyPRT[4]->Remove(0, 15);
-				anyPRT[5] = anyPRT[5]->Remove(0, 14);
-				perkusyjne obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
-					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
-				kontener = obj.dodaj(kontener);
-			}
-			else if (anyPRT[0] == "smyczkowe") {
+
+			if (anyPRT[0] == "dmuchane") {
 				anyPRT[4] = anyPRT[4]->Remove(0, 13);
-				anyPRT[5] = anyPRT[5]->Remove(0, 14);
-				smyczkowe obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
-					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
-				kontener = obj.dodaj(kontener);
-			}
-			else if (anyPRT[0] == "strunowe") {
-				anyPRT[4] = anyPRT[4]->Remove(0, 13);
-				strunowe obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+				dmuchane obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
 					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]));
 				kontener = obj.dodaj(kontener);
-			}
-			else if (anyPRT[0] == "uderzane") {
-				anyPRT[4] = anyPRT[4]->Remove(0, 13);
-				anyPRT[5] = anyPRT[5]->Remove(0, 16);
-				uderzane obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
-					unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
-				kontener=obj.dodaj(kontener);
-			}
-if (comboBox1->SelectedItem->ToString() == anyPRT[1]) {
-				
-				text2->Text = anyPRT[1];
-				text3->Text = anyPRT[2];
-				text4->Text = anyPRT[3];
-			if (anyPRT[0] == "dmuchane") {
-				text1->Text = "Dmuchany";
-				Par1->Text = "Liczba Przyciskow";
-				text5->Text = anyPRT[4];
-				Par2->Text = "";
 
 			}
-			else if (anyPRT[0] == "perkusyjne") {
-				text1->Text = "Perkusyjny";
-				text5->Text = anyPRT[4];
-				text6->Text = anyPRT[5];
-				Par1->Text = "Liczba Talerzy";
-				Par2->Text = "Liczna Bebnow";
+			else
+				if (anyPRT[0] == "perkusyjne") {
+					anyPRT[4] = anyPRT[4]->Remove(0, 15);
+					anyPRT[5] = anyPRT[5]->Remove(0, 14);
+					perkusyjne obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+						unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
+					kontener = obj.dodaj(kontener);
+				}
+				else if (anyPRT[0] == "smyczkowe") {
+					anyPRT[4] = anyPRT[4]->Remove(0, 13);
+					anyPRT[5] = anyPRT[5]->Remove(0, 14);
+					smyczkowe obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+						unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
+					kontener = obj.dodaj(kontener);
+				}
+				else if (anyPRT[0] == "strunowe") {
+					anyPRT[4] = anyPRT[4]->Remove(0, 13);
+					strunowe obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+						unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]));
+					kontener = obj.dodaj(kontener);
+				}
+				else if (anyPRT[0] == "uderzane") {
+					anyPRT[4] = anyPRT[4]->Remove(0, 13);
+					anyPRT[5] = anyPRT[5]->Remove(0, 16);
+					uderzane obj(toStandardString(anyPRT[1]), unsigned::Parse(anyPRT[2]),
+						unsigned::Parse(anyPRT[3]), unsigned::Parse(anyPRT[4]), unsigned::Parse(anyPRT[5]));
+					kontener = obj.dodaj(kontener);
+				}
+			try {
+				if (comboBox1->SelectedItem == nullptr)throw gcnew Exception;
+				if (comboBox1->SelectedItem->ToString() == anyPRT[1])
+				{
+
+					text2->Text = anyPRT[1];
+					text3->Text = anyPRT[2];
+					text4->Text = anyPRT[3];
+					if (anyPRT[0] == "dmuchane") {
+						text1->Text = "Dmuchany";
+						Par1->Text = "Liczba Przyciskow";
+						text5->Text = anyPRT[4];
+						Par2->Text = "";
+
+					}
+					else if (anyPRT[0] == "perkusyjne") {
+						text1->Text = "Perkusyjny";
+						text5->Text = anyPRT[4];
+						text6->Text = anyPRT[5];
+						Par1->Text = "Liczba Talerzy";
+						Par2->Text = "Liczna Bebnow";
+					}
+					else if (anyPRT[0] == "smyczkowe") {
+						text1->Text = "Smyczkowy";
+						text5->Text = anyPRT[4];
+						text6->Text = anyPRT[5];
+						Par1->Text = "Liczba Strun";
+						Par2->Text = "Dlugosc gryfu";
+					}
+					else if (anyPRT[0] == "strunowe") {
+						text1->Text = "Strunowy";
+						text5->Text = anyPRT[4];
+						Par1->Text = "Liczba Strun";
+						Par2->Text = "";
+					}
+					else if (anyPRT[0] == "Uderzany") {
+						text1->Text = "Uderzane";
+						text5->Text = anyPRT[4];
+						text6->Text = anyPRT[5];
+						Par1->Text = "Liczba Strun";
+						Par2->Text = "Liczba Klawiszy";
+					}
+				}
 			}
-			else if (anyPRT[0] == "smyczkowe") {
-				text1->Text = "Smyczkowy";
-				text5->Text = anyPRT[4];
-				text6->Text = anyPRT[5];
-				Par1->Text = "Liczba Strun";
-				Par2->Text = "Dlugosc gryfu";
+			catch (Exception^ ex) {
+				MessageBox::Show("Nic nie wybra³eœ", "B³¹d");
+				din->Close();
+				return;
 			}
-			else if (anyPRT[0] == "strunowe") {
-				text1->Text = "Strunowy";
-				text5->Text = anyPRT[4];
-				Par1->Text = "Liczba Strun";
-				Par2->Text = "";
-			}
-			else if (anyPRT[0] == "Uderzany") {
-				text1->Text = "Uderzane";
-				text5->Text = anyPRT[4];
-				text6->Text = anyPRT[5];
-				Par1->Text = "Liczba Strun";
-				Par2->Text = "Liczba Klawiszy";
-			}
+			
 		}
-	}
+	
 	din->Close();
 	kontener=kontener[0]->sprzedaj(toStandardString(comboBox1->SelectedItem->ToString()),kontener);
 	StreamWriter^ clean = gcnew StreamWriter(filename, false);
