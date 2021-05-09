@@ -99,6 +99,7 @@ namespace ProjektPKK {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::Gold;
 			this->ClientSize = System::Drawing::Size(440, 169);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
@@ -116,7 +117,7 @@ namespace ProjektPKK {
 	}
 	private: System :: Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (comboBox1->SelectedItem == nullptr) {
-			MessageBox::Show("Nie Wybra³eœ", "OK");
+			MessageBox::Show("Nie wybra³eœ", "B³ad");
 		}
 		else {
 			OknoDodaj^ dodFORM = gcnew OknoDodaj(comboBox1->ToString(), comboBox1->SelectedIndex);

@@ -1,4 +1,6 @@
 dmuchane;nazwa:ss;cena:2;liczba_sztuk:3;l_przyciskow:4;
+dmuchane;nazwa:Trąbpk;cena:200;liczba_sztuk:2;l_przyciskow:3;
 uderzane;nazwa:s;cena:2;liczba_sztuk:3;liczba_strun:4;liczba_klawiszy:5;
-smyczkowe;nazwa:as;cena:2;liczba_sztuk:3;liczba_strun:4;dlugosc_gryfu:5;
 strunowe;nazwa:fd;cena:2;liczba_sztuk:3;liczba_strun:4;
+smyczkowe;nazwa:as;cena:2;liczba_sztuk:3;liczba_strun:4;dlugosc_gryfu:5;
+perkusyjne;nazwa:Perkusja;cena:53;liczba_sztuk:2;liczba_talerzy:3;liczba_bebnow:4;

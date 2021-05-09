@@ -61,6 +61,7 @@ namespace ProjektPKK {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Skleph::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -69,8 +70,9 @@ namespace ProjektPKK {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::Gold;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 26));
-			this->label1->Location = System::Drawing::Point(263, 47);
+			this->label1->Location = System::Drawing::Point(292, 44);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(270, 39);
 			this->label1->TabIndex = 0;
@@ -78,29 +80,33 @@ namespace ProjektPKK {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(499, 149);
+			this->button1->BackColor = System::Drawing::Color::Gold;
+			this->button1->Location = System::Drawing::Point(554, 212);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(223, 116);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Sprzedarz";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &Skleph::button1_Click);
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(114, 149);
+			this->button2->BackColor = System::Drawing::Color::Gold;
+			this->button2->Location = System::Drawing::Point(44, 212);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(223, 116);
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"Nowe Instrumenty";
-			this->button2->UseVisualStyleBackColor = true;
+			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &Skleph::button2_Click);
 			// 
 			// Skleph
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(831, 412);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(831, 553);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);

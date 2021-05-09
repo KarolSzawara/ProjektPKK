@@ -177,6 +177,7 @@ namespace ProjektPKK {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Sprzedarz::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->dataSet1 = (gcnew System::Data::DataSet());
 			this->listBox2 = (gcnew System::Windows::Forms::ListBox());
@@ -213,6 +214,7 @@ namespace ProjektPKK {
 			// 
 			// listBox1
 			// 
+			this->listBox1->Cursor = System::Windows::Forms::Cursors::IBeam;
 			this->listBox1->Location = System::Drawing::Point(3, 3);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(613, 95);
@@ -245,6 +247,7 @@ namespace ProjektPKK {
 			// 
 			// flowLayoutPanel1
 			// 
+			this->flowLayoutPanel1->BackColor = System::Drawing::Color::Yellow;
 			this->flowLayoutPanel1->Controls->Add(this->listBox1);
 			this->flowLayoutPanel1->Controls->Add(this->listBox2);
 			this->flowLayoutPanel1->Controls->Add(this->listBox3);
@@ -252,7 +255,7 @@ namespace ProjektPKK {
 			this->flowLayoutPanel1->Controls->Add(this->listBox5);
 			this->flowLayoutPanel1->Location = System::Drawing::Point(66, 12);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(616, 540);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(616, 505);
 			this->flowLayoutPanel1->TabIndex = 0;
 			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Sprzedarz::flowLayoutPanel1_Paint);
 			// 
@@ -260,6 +263,8 @@ namespace ProjektPKK {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(780, 661);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->flowLayoutPanel1);

@@ -40,6 +40,7 @@ namespace ProjektPKK {
 		}
 		OknoDodaj(String^ rodzaj,int index)
 		{
+			
 			InitializeComponent();
 			switch (index) {
 			case 0:text1->Text = "Dmuchany";
@@ -143,6 +144,7 @@ namespace ProjektPKK {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(OknoDodaj::typeid));
 			this->text2 = (gcnew System::Windows::Forms::TextBox());
 			this->text3 = (gcnew System::Windows::Forms::TextBox());
 			this->text4 = (gcnew System::Windows::Forms::TextBox());
@@ -209,6 +211,7 @@ namespace ProjektPKK {
 			// Nazwa
 			// 
 			this->Nazwa->AutoSize = true;
+			this->Nazwa->BackColor = System::Drawing::Color::Gold;
 			this->Nazwa->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->Nazwa->Location = System::Drawing::Point(277, 54);
 			this->Nazwa->Name = L"Nazwa";
@@ -220,6 +223,7 @@ namespace ProjektPKK {
 			// Cena
 			// 
 			this->Cena->AutoSize = true;
+			this->Cena->BackColor = System::Drawing::Color::Gold;
 			this->Cena->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->Cena->Location = System::Drawing::Point(277, 78);
 			this->Cena->Name = L"Cena";
@@ -230,6 +234,7 @@ namespace ProjektPKK {
 			// L_SZT
 			// 
 			this->L_SZT->AutoSize = true;
+			this->L_SZT->BackColor = System::Drawing::Color::Gold;
 			this->L_SZT->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->L_SZT->Location = System::Drawing::Point(277, 104);
 			this->L_SZT->Name = L"L_SZT";
@@ -241,6 +246,7 @@ namespace ProjektPKK {
 			// Par2
 			// 
 			this->Par2->AutoSize = true;
+			this->Par2->BackColor = System::Drawing::Color::Gold;
 			this->Par2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->Par2->Location = System::Drawing::Point(277, 156);
 			this->Par2->Name = L"Par2";
@@ -251,6 +257,7 @@ namespace ProjektPKK {
 			// Par3
 			// 
 			this->Par3->AutoSize = true;
+			this->Par3->BackColor = System::Drawing::Color::Gold;
 			this->Par3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->Par3->Location = System::Drawing::Point(277, 180);
 			this->Par3->Name = L"Par3";
@@ -260,12 +267,13 @@ namespace ProjektPKK {
 			// 
 			// button1
 			// 
+			this->button1->BackColor = System::Drawing::Color::Gold;
 			this->button1->Location = System::Drawing::Point(485, 214);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(149, 30);
 			this->button1->TabIndex = 12;
 			this->button1->Text = L"Dodaj";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &OknoDodaj::button1_Click);
 			// 
 			// comboBox1
@@ -280,6 +288,7 @@ namespace ProjektPKK {
 			// label7
 			// 
 			this->label7->AutoSize = true;
+			this->label7->BackColor = System::Drawing::Color::Gold;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->label7->Location = System::Drawing::Point(87, 24);
 			this->label7->Name = L"label7";
@@ -298,6 +307,7 @@ namespace ProjektPKK {
 			// Instr
 			// 
 			this->Instr->AutoSize = true;
+			this->Instr->BackColor = System::Drawing::Color::Gold;
 			this->Instr->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->Instr->Location = System::Drawing::Point(277, 27);
 			this->Instr->Name = L"Instr";
@@ -308,6 +318,7 @@ namespace ProjektPKK {
 			// Par1
 			// 
 			this->Par1->AutoSize = true;
+			this->Par1->BackColor = System::Drawing::Color::Gold;
 			this->Par1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.25F));
 			this->Par1->Location = System::Drawing::Point(277, 130);
 			this->Par1->Name = L"Par1";
@@ -317,28 +328,32 @@ namespace ProjektPKK {
 			// 
 			// sprz
 			// 
+			this->sprz->BackColor = System::Drawing::Color::Gold;
 			this->sprz->Location = System::Drawing::Point(281, 214);
 			this->sprz->Name = L"sprz";
 			this->sprz->Size = System::Drawing::Size(148, 30);
 			this->sprz->TabIndex = 18;
 			this->sprz->Text = L"Przejdz do sprzedarzy";
-			this->sprz->UseVisualStyleBackColor = true;
+			this->sprz->UseVisualStyleBackColor = false;
 			this->sprz->Click += gcnew System::EventHandler(this, &OknoDodaj::sprz_Click);
 			// 
 			// button2
 			// 
+			this->button2->BackColor = System::Drawing::Color::Gold;
 			this->button2->Location = System::Drawing::Point(65, 214);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(128, 30);
 			this->button2->TabIndex = 19;
 			this->button2->Text = L"Wybierz";
-			this->button2->UseVisualStyleBackColor = true;
+			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &OknoDodaj::button2_Click);
 			// 
 			// OknoDodaj
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(697, 256);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->sprz);
